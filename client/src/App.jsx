@@ -24,6 +24,7 @@ function App() {
       };
     });
   };
+
   const handleLoginSubmit = () => {
     console.log(login);
     axios({
@@ -32,7 +33,7 @@ function App() {
       data: login,
       withCredentials: true,
     })
-      .then((rest) => {
+      .then((res) => {
         console.log("res", res.data);
 
         if (res.data.msg === "Good Login") {
@@ -43,6 +44,7 @@ function App() {
       })
       .catch((error) => console.log(error));
   };
+
   const handleRegister = (e) => {
     console.log("reg", register);
     setRegister((prev) => ({
@@ -50,6 +52,7 @@ function App() {
       [e.target.id]: e.target.value,
     }));
   };
+
   const handleRegisterSubmit = (e) => {
     console.log("reg", register);
     axios({
@@ -60,6 +63,7 @@ function App() {
       .then((res) => console.log("res", res.data))
       .catch((error) => console.log(error));
   };
+  
   return (
     <>
       <div id="login">
