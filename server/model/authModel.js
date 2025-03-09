@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
-// Making a Schema for creating new Auth objects
+// Schema for creating new Auth objects
 
 const AuthSchema = new Schema({
   username: {

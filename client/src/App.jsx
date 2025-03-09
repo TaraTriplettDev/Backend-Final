@@ -3,18 +3,24 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 function App() {
+
+  // setting up the login and register variables and making them rely on the useState function for their values 
+
   const [login, setLogin] = useState({
     username: "",
     password: "",
   });
+
   const [register, setRegister] = useState({
     username: "",
     password: "",
   });
 
+  // assigns the useNavigate function to a variable called "nav"
+
   const nav = useNavigate();
 
-  // handleLogin takes the value of e and sets the value of login to the previous state, the e id, and the e value* 
+  // takes the values of the Login input events and assigns them to an object with items that use the input ids as keys and the user input as values 
 
   const handleLogin = (e) => {
     console.log("login", e.target.value);
@@ -27,7 +33,9 @@ function App() {
     });
   };
 
-  // handleLoginSubmit takes the value of login and passes it to the server through axios
+  // creates a json file including the method, the route, the value of login assigned by handleLogin, and the state of its credentials, then sends it to the server via axios
+
+  // If the message "Good Login" is received from the server, the user is taken to the Protected Route
 
   const handleLoginSubmit = () => {
     console.log(login);
@@ -41,7 +49,7 @@ function App() {
         console.log("res", res.data);
 
         if (res.data.msg === "Good Login") {
-          nav("/admin");
+          nav("/admin/");
         } else {
           alert("Bad Login");
         }
@@ -57,7 +65,7 @@ function App() {
     }));
   };
 
-  const handleRegisterSubmit = (e) => {
+  const handleRegisterSubmit = (register) => {
     console.log("reg", register);
     axios({
       method: "post",
@@ -75,7 +83,9 @@ function App() {
       <div id="login">
         {console.log("login", login)}
         {console.log("reg", register)}
+
         <h1>Login</h1>
+        
         {/* The onChange segment takes the e(vent) and passes it to handleLogin */} 
         <input 
           id="username"
